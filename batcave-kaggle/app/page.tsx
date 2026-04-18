@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import Link from 'next/link';
+import Link from 'next/link'; 
 
 export default function WayneTechLandingPage() {
   return (
@@ -12,25 +12,24 @@ export default function WayneTechLandingPage() {
       minHeight: '100vh',
       display: 'flex',
       flexDirection: 'column',
-      justifyContent: 'center',
+      justifyContent: 'flex-start',
       alignItems: 'center',
-      padding: '20px',
+      paddingTop: '15vh',
       textAlign: 'center',
-      // Arka planda Gotham şehri görseli (varsa)
-      backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)), url('/gotham-bg.jpeg')`, 
+      backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)), url('/gotham-bg.jpeg')`, 
       backgroundSize: 'cover',
       backgroundPosition: 'center',
     }}>
       
-      {/* --- METALİK LOGO (.jpeg olarak güncellendi) --- */}
+      {/* --- METALİK LOGO --- */}
       <img 
         src="/batman-tech-logo.jpeg" 
         alt="WayneTech AI Logo" 
         style={{ 
-          width: 'clamp(250px, 60vw, 500px)', 
+          width: 'clamp(200px, 50vw, 400px)', 
           height: 'auto', 
-          marginBottom: '50px', 
-          filter: 'drop-shadow(0 0 20px rgba(250, 205, 5, 0.4))'
+          marginBottom: '20px',
+          filter: 'drop-shadow(0 0 20px rgba(250, 205, 5, 0.5))'
         }} 
       />
 
@@ -39,15 +38,15 @@ export default function WayneTechLandingPage() {
         <button style={{
           backgroundColor: '#facd05',
           color: '#000',
-          padding: '18px 50px',
+          padding: '15px 40px',
           borderRadius: '5px',
-          fontSize: '1.1rem',
+          fontSize: '1rem',
           fontWeight: '950',
           letterSpacing: '3px',
           textTransform: 'uppercase',
           border: 'none',
           cursor: 'pointer',
-          boxShadow: '0 0 30px rgba(250, 205, 5, 0.5)',
+          boxShadow: '0 0 25px rgba(250, 205, 5, 0.6)',
           transition: 'all 0.3s ease',
         }}>
           Enter the Batcave
