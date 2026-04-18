@@ -100,16 +100,16 @@ export default function WayneFinalPortfolio() {
         background: 'linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, transparent 100%)',
       }}>
         
-        {/* --- İSTEDİĞİN SARI ÇERÇEVELİ KUTU --- */}
+        {/* --- SARI ÇERÇEVELİ KUTU --- */}
         <div 
           onClick={toggleMusic}
           style={{
             display: 'inline-block',
-            border: '2px solid #facd05', // Sarı çerçeve
+            border: '2px solid #facd05',
             padding: '12px 35px',
             marginBottom: '40px',
             cursor: 'pointer',
-            backgroundColor: 'rgba(250, 205, 5, 0.05)', // Hafif sarı şeffaf arka plan
+            backgroundColor: 'rgba(250, 205, 5, 0.05)',
             transition: 'all 0.3s ease',
             borderRadius: '4px'
           }}
@@ -217,20 +217,36 @@ export default function WayneFinalPortfolio() {
         ))}
       </main>
 
-      {/* ALT BÖLÜM */}
+      {/* ALT BÖLÜM (FOOTER) */}
       <footer style={{ 
         textAlign: 'center', 
         padding: '120px 20px', 
         background: 'linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%)',
         marginTop: '100px',
-        borderTop: '1px solid rgba(250, 205, 5, 0.2)'
+        borderTop: '1px solid rgba(250, 205, 5, 0.2)',
+        position: 'relative',
+        zIndex: 10
       }}>
         <p style={{ color: '#facd05', fontSize: 'clamp(1.2rem, 3vw, 1.6rem)', fontWeight: '800', letterSpacing: '2px', marginBottom: '15px' }}>
           © 2026 Esma Tuğba MERGEN — Data Science & Machine Learning Portfolio
         </p>
-        <p style={{ color: '#888', fontSize: '0.9rem', letterSpacing: '6px', textTransform: 'uppercase', marginBottom: '20px' }}>
+        <p style={{ color: '#888', fontSize: '0.9rem', letterSpacing: '6px', textTransform: 'uppercase', marginBottom: '40px' }}>
           WAYNE ENTERPRISES ARCHIVES // SECURED DATA // GOTHAM CITY
         </p>
+
+        {/* --- YASAL NOT (DISCLAIMER) - ŞİMDİ KESİN GÖRÜNECEK --- */}
+        <div style={{ 
+          maxWidth: '900px', 
+          margin: '0 auto', 
+          borderTop: '1px solid rgba(255,255,255,0.1)', 
+          paddingTop: '30px' 
+        }}>
+          <p style={{ color: '#777', fontSize: '0.8rem', fontStyle: 'italic', lineHeight: '1.5', margin: 0 }}>
+            Disclaimer: This project is a non-commercial, educational portfolio. 
+            All Batman-related imagery, music, and characters are the property of 
+            DC Comics and Warner Bros. No copyright infringement is intended.
+          </p>
+        </div>
       </footer>
 
     </div>
