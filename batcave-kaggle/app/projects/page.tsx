@@ -53,7 +53,8 @@ export default function WayneFinalPortfolio() {
   return (
     <div style={{ 
       backgroundColor: '#000',
-      backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)), url('/gotham-bg.jpeg')`, 
+      // Arka planı biraz daha aydınlık yaptım (0.4/0.5 -> 0.2/0.3)
+      backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)), url('/gotham-bg.jpeg')`, 
       backgroundSize: 'cover',
       backgroundPosition: 'center',
       backgroundAttachment: 'fixed',
@@ -97,7 +98,7 @@ export default function WayneFinalPortfolio() {
       <header style={{ 
         padding: '120px 40px 100px 40px', 
         textAlign: 'center', 
-        background: 'linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, transparent 100%)',
+        background: 'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, transparent 100%)',
       }}>
         
         {/* --- SARI ÇERÇEVELİ KUTU --- */}
@@ -234,7 +235,7 @@ export default function WayneFinalPortfolio() {
           WAYNE ENTERPRISES ARCHIVES // SECURED DATA // GOTHAM CITY
         </p>
 
-        {/* --- YASAL NOT (DISCLAIMER) - ŞİMDİ KESİN GÖRÜNECEK --- */}
+        {/* --- YASAL NOT (DISCLAIMER) --- */}
         <div style={{ 
           maxWidth: '900px', 
           margin: '0 auto', 
