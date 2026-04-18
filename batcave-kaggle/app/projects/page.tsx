@@ -1,6 +1,6 @@
 "use client";
 
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 const myProjects = [
   { title: "1. Food Delivery Time Prediction", type: "Regression Analysis", image: "/1.png", kaggle: "https://www.kaggle.com/code/esmatugbamergen/food-delivery-time-prediction-regresyon/", hf: "https://huggingface.co/spaces/ESMATUGBA/food-delivery-prediction-app", desc: "Predicting delivery times using XGBoost and real-time logistics data to optimize urban food delivery chains." },
@@ -30,6 +30,26 @@ const myProjects = [
 ];
 
 export default function WayneFinalPortfolio() {
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.volume = 0.3;
+    }
+  }, []);
+
+  const toggleMusic = () => {
+    if (audioRef.current) {
+      if (isPlaying) {
+        audioRef.current.pause();
+      } else {
+        audioRef.current.play().catch(err => console.log("Müzik hatası:", err));
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
+
   return (
     <div style={{ 
       backgroundColor: '#000',
@@ -42,13 +62,70 @@ export default function WayneFinalPortfolio() {
       paddingBottom: '120px',
       minHeight: '100vh',
     }}>
+
+      {/* --- MÜZİK DOSYASI --- */}
+      <audio ref={audioRef} loop>
+        <source src="/batman-theme.mp3" type="audio/mpeg" />
+      </audio>
+
+      {/* --- MÜZİK KONTROL BUTONU (SAĞ ALT) --- */}
+      <button 
+        onClick={toggleMusic}
+        style={{
+          position: 'fixed',
+          bottom: '40px',
+          right: '40px',
+          zIndex: 9999,
+          backgroundColor: '#facd05',
+          border: 'none',
+          borderRadius: '50%',
+          width: '70px',
+          height: '70px',
+          cursor: 'pointer',
+          boxShadow: isPlaying ? '0 0 30px #facd05' : '0 10px 20px rgba(0,0,0,0.5)',
+          fontSize: '30px',
+          transition: 'all 0.3s ease',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center'
+        }}
+      >
+        {isPlaying ? '🔇' : '🦇'}
+      </button>
       
       {/* ÜST BAŞLIK VE GİRİŞ METİNLERİ */}
       <header style={{ 
-        padding: '160px 40px 100px 40px', 
+        padding: '120px 40px 100px 40px', 
         textAlign: 'center', 
         background: 'linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, transparent 100%)',
       }}>
+        
+        {/* --- İSTEDİĞİN SARI ÇERÇEVELİ KUTU --- */}
+        <div 
+          onClick={toggleMusic}
+          style={{
+            display: 'inline-block',
+            border: '2px solid #facd05', // Sarı çerçeve
+            padding: '12px 35px',
+            marginBottom: '40px',
+            cursor: 'pointer',
+            backgroundColor: 'rgba(250, 205, 5, 0.05)', // Hafif sarı şeffaf arka plan
+            transition: 'all 0.3s ease',
+            borderRadius: '4px'
+          }}
+        >
+          <p style={{
+            color: '#facd05',
+            fontSize: '0.9rem',
+            fontWeight: '900',
+            letterSpacing: '3px',
+            margin: 0,
+            textTransform: 'uppercase'
+          }}>
+            {isPlaying ? "● SYSTEM STATUS: ONLINE" : "🦇 INITIALIZE GOTHAM AUDIO UPLINK (CLICK)"}
+          </p>
+        </div>
+
         <h1 style={{ 
           color: '#facd05', 
           fontSize: 'clamp(2.5rem, 8vw, 5.5rem)', 
@@ -73,21 +150,10 @@ export default function WayneFinalPortfolio() {
             }}>
               Inspired by real-world machine learning engineering portfolios, this project integrates Kaggle datasets and notebook-based experiments into a structured, production-style presentation format.
             </p>
-            <p style={{ 
-              color: '#facd05', 
-              fontSize: 'clamp(1rem, 2vw, 1.6rem)', 
-              fontWeight: '400', 
-              opacity: 0.95, 
-              fontStyle: 'italic', 
-              lineHeight: '1.6',
-              textShadow: '1px 1px 10px rgba(0,0,0,1)' 
-            }}>
-              The Batman theme serves as a creative user interface layer designed to make data science storytelling more engaging without compromising on technical depth or analytical rigor.
-            </p>
         </div>
       </header>
 
-      {/* PROJE LİSTESİ - SAĞLI SOLLU VE MOBİL UYUMLU */}
+      {/* PROJE LİSTESİ */}
       <main style={{ maxWidth: '1700px', margin: '0 auto', padding: '0 20px' }}>
         {myProjects.map((p, i) => (
           <div key={i} style={{ 
@@ -100,7 +166,6 @@ export default function WayneFinalPortfolio() {
             justifyContent: 'center'
           }}>
             
-            {/* GÖRSEL PANEL - DEV VE ALTIN ÇERÇEVELİ */}
             <div style={{ 
               flex: '1.7', 
               minWidth: '320px', 
@@ -122,7 +187,6 @@ export default function WayneFinalPortfolio() {
               />
             </div>
 
-            {/* METİN PANELİ */}
             <div style={{ 
                 flex: '1', 
                 textAlign: i % 2 === 0 ? 'left' : 'right',
@@ -140,7 +204,7 @@ export default function WayneFinalPortfolio() {
               </p>
               
               <div style={{ display: 'flex', gap: '30px', justifyContent: i % 2 === 0 ? 'flex-start' : 'flex-end', flexWrap: 'wrap' }}>
-                <a href={p.kaggle} target="_blank" rel="noreferrer" style={{ backgroundColor: '#facd05', color: '#000', padding: '22px 55px', borderRadius: '100px', fontWeight: '950', textDecoration: 'none', fontSize: '1.2rem', boxShadow: '0 10px 20px rgba(250, 205, 5, 0.3)' }}>
+                <a href={p.kaggle} target="_blank" rel="noreferrer" style={{ backgroundColor: '#facd05', color: '#000', padding: '22px 55px', borderRadius: '100px', fontWeight: '950', textDecoration: 'none', fontSize: '1.2rem' }}>
                   KAGGLE NOTEBOOK
                 </a>
                 <a href={p.hf} target="_blank" rel="noreferrer" style={{ backgroundColor: 'transparent', color: '#fff', padding: '22px 55px', borderRadius: '100px', fontWeight: '950', textDecoration: 'none', border: '3px solid #fff', fontSize: '1.2rem' }}>
@@ -153,7 +217,7 @@ export default function WayneFinalPortfolio() {
         ))}
       </main>
 
-      {/* ALT BÖLÜM - TELİF VE GİZLİLİK NOTLARI */}
+      {/* ALT BÖLÜM */}
       <footer style={{ 
         textAlign: 'center', 
         padding: '120px 20px', 
@@ -167,18 +231,6 @@ export default function WayneFinalPortfolio() {
         <p style={{ color: '#888', fontSize: '0.9rem', letterSpacing: '6px', textTransform: 'uppercase', marginBottom: '20px' }}>
           WAYNE ENTERPRISES ARCHIVES // SECURED DATA // GOTHAM CITY
         </p>
-
-        {/* Yasal ve Tematik Disclaimer */}
-        <div style={{ maxWidth: '900px', margin: '0 auto', opacity: 0.7 }}>
-          <p style={{ color: '#666', fontSize: '0.85rem', lineHeight: '1.8', fontStyle: 'italic' }}>
-            This portfolio and the projects contained within are for educational and demonstrative purposes. 
-            All data processed is handled under fair use for analytical research. 
-            Unauthorized access to encrypted WayneTech datasets is strictly prohibited by Gotham City cyber-laws.
-          </p>
-          <p style={{ color: '#facd05', fontSize: '0.8rem', marginTop: '15px', fontWeight: '900', letterSpacing: '3px' }}>
-            RESTRICTED ACCESS — LEVEL 7 CLEARANCE REQUIRED
-          </p>
-        </div>
       </footer>
 
     </div>
