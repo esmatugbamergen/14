@@ -35,25 +35,21 @@ export default function WayneFinalPortfolio() {
 
   const startGotham = () => {
     if (audioRef.current) {
-      audioRef.current.play().catch(err => console.error("Müzik çalma hatası:", err));
+      audioRef.current.play().catch(err => console.error("Müzik hatası:", err));
       setIsPlaying(true);
     }
   };
 
   const toggleMusic = () => {
-    if (isPlaying) {
-      audioRef.current.pause();
-    } else {
-      audioRef.current.play().catch(err => console.error("Müzik çalma hatası:", err));
-    }
+    if (isPlaying) audioRef.current.pause();
+    else audioRef.current.play().catch(err => console.error("Müzik hatası:", err));
     setIsPlaying(!isPlaying);
   };
 
   return (
     <div style={{
       backgroundColor: '#0a0a0a',
-      // Arka plan gradyanını biraz yumuşattık (0.4-0.5 yerine 0.2-0.3 yaparak gotham-bg görselini daha belirgin kıldık)
-      backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)), url('/gotham-bg.jpeg')`,
+      backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/gotham-bg.jpeg')`,
       backgroundSize: 'cover',
       backgroundPosition: 'center',
       backgroundAttachment: 'fixed',
@@ -65,9 +61,9 @@ export default function WayneFinalPortfolio() {
       
       <audio ref={audioRef} src="/batman-theme.mp3" loop />
 
-      {/* Header Bölümü - Tüm Metinler Korundu */}
+      {/* --- HEADER --- */}
       <header style={{
-        padding: '160px 20px 100px 20px',
+        padding: '120px 20px 60px 20px',
         textAlign: 'center',
         background: 'linear-gradient(to bottom, rgba(0,0,0,0.85) 0%, transparent 100%)'
       }}>
@@ -75,112 +71,87 @@ export default function WayneFinalPortfolio() {
           <button
             onClick={startGotham}
             style={{
-              backgroundColor: '#facd05',
-              color: '#000',
-              padding: '15px 35px',
-              borderRadius: '8px',
-              fontSize: '1.2rem',
-              fontWeight: '950',
-              border: 'none',
-              cursor: 'pointer',
-              marginBottom: '50px',
-              boxShadow: '0 0 30px rgba(250, 205, 5, 0.5)',
-              animation: 'pulse 2s infinite',
-              textTransform: 'uppercase'
+              backgroundColor: '#facd05', color: '#000', padding: '15px 35px', borderRadius: '8px',
+              fontSize: '1.2rem', fontWeight: '950', border: 'none', cursor: 'pointer', marginBottom: '40px',
+              boxShadow: '0 0 30px rgba(250, 205, 5, 0.5)', animation: 'pulse 2s infinite'
             }}
-          >
-            ⚡ INITIALIZE WAYNETECH AUDIO ⚡
-          </button>
+          >⚡ INITIALIZE WAYNETECH AUDIO ⚡</button>
         )}
 
         <h1 style={{
-          color: '#facd05',
-          fontSize: '5.5rem',
-          fontWeight: '950',
-          margin: '0 auto 40px auto',
-          maxWidth: '1400px',
-          letterSpacing: '-2px',
-          lineHeight: '1.1',
-          textShadow: '4px 4px 20px rgba(0,0,0,1)'
+          color: '#facd05', fontSize: 'clamp(2.5rem, 8vw, 5.5rem)', fontWeight: '950',
+          margin: '0 auto 30px auto', maxWidth: '1400px', lineHeight: '1.1', textShadow: '4px 4px 20px #000'
         }}>
           Batman Kaggle Machine <br/>Learning Portfolio
         </h1>
         
-        <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
-            <p style={{ color: '#fff', fontSize: '2.2rem', fontWeight: '600', marginBottom: '30px', lineHeight: '1.4' }}>
-                Inspired by real-world machine learning engineering portfolios, this project integrates Kaggle datasets and notebook-based experiments into a structured, production-style presentation format.
-            </p>
-            <p style={{ color: '#facd05', fontSize: '1.6rem', fontWeight: '400', opacity: 0.9, fontStyle: 'italic', lineHeight: '1.6' }}>
-                The Batman theme serves as a creative user interface layer designed to make data science storytelling more engaging without compromising on technical depth or analytical rigor.
-            </p>
+        <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '0 20px' }}>
+          <p style={{ color: '#fff', fontSize: 'clamp(1.2rem, 3vw, 2rem)', fontWeight: '600', marginBottom: '20px' }}>
+            Inspired by real-world machine learning engineering portfolios, this project integrates Kaggle datasets and notebook-based experiments into a structured, production-style presentation format.
+          </p>
+          <p style={{ color: '#facd05', fontSize: 'clamp(1rem, 2vw, 1.4rem)', fontStyle: 'italic' }}>
+            The Batman theme serves as a creative user interface layer designed to make data science storytelling more engaging without compromising on technical depth or analytical rigor.
+          </p>
         </div>
       </header>
 
-      {/* Ana İçerik - Kartlar Daha Net Görülecek */}
-      <main style={{ maxWidth: '1600px', margin: '0 auto', padding: '0 20px' }}>
+      {/* --- PROJELER --- */}
+      <main style={{ maxWidth: '1600px', margin: '0 auto', padding: '0 15px' }}>
         {myProjects.map((p, i) => (
           <div key={i} style={{
             display: 'flex',
             flexDirection: 'row',
-            flexWrap: 'wrap', // Mobil uyumu bozmadan ekledik
-            backgroundColor: 'rgba(25, 25, 25, 0.85)', // Siyahlığı çok az kırdık (15 -> 25)
-            borderRadius: '50px',
-            marginBottom: '80px',
+            flexWrap: 'wrap',
+            backgroundColor: 'rgba(25, 25, 25, 0.9)',
+            borderRadius: '40px',
+            marginBottom: '60px',
             overflow: 'hidden',
-            border: '1px solid rgba(250, 205, 5, 0.3)',
+            border: '2px solid #facd05',
             boxShadow: '0 30px 60px rgba(0,0,0,0.6)',
             backdropFilter: 'blur(10px)'
           }}>
-            <div style={{ flex: '1.2', padding: '60px', display: 'flex', flexDirection: 'column', justifyContent: 'center', minWidth: '350px' }}>
-              <span style={{ color: '#facd05', fontWeight: '900', fontSize: '1.1rem', textTransform: 'uppercase', letterSpacing: '4px', marginBottom: '20px' }}>{p.type}</span>
-              <h2 style={{ fontSize: '3rem', fontWeight: '900', marginBottom: '25px', color: '#fff' }}>{p.title}</h2>
-              <p style={{ fontSize: '1.6rem', color: '#ccc', marginBottom: '50px', lineHeight: '1.5' }}>{p.desc}</p>
-              <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
-                <a href={p.kaggle} target="_blank" rel="noreferrer" style={{ backgroundColor: '#facd05', color: '#000', padding: '18px 40px', borderRadius: '50px', fontWeight: '900', textDecoration: 'none' }}>KAGGLE</a>
-                <a href={p.hf} target="_blank" rel="noreferrer" style={{ backgroundColor: 'rgba(255,255,255,0.1)', color: '#fff', padding: '18px 40px', borderRadius: '50px', fontWeight: '900', textDecoration: 'none', border: '1px solid #fff' }}>APP</a>
+            <div style={{ 
+              flex: '1.2', 
+              padding: 'clamp(30px, 5vw, 60px)', 
+              display: 'flex', 
+              flexDirection: 'column', 
+              justifyContent: 'center', 
+              minWidth: '320px' 
+            }}>
+              <span style={{ color: '#facd05', fontWeight: '900', letterSpacing: '3px', fontSize: '0.9rem' }}>{p.type}</span>
+              <h2 style={{ fontSize: 'clamp(1.8rem, 4vw, 3rem)', fontWeight: '900', margin: '15px 0', color: '#fff' }}>{p.title}</h2>
+              <p style={{ fontSize: 'clamp(1rem, 2vw, 1.4rem)', color: '#ccc', marginBottom: '30px' }}>{p.desc}</p>
+              <div style={{ display: 'flex', gap: '15px', flexWrap: 'wrap' }}>
+                <a href={p.kaggle} target="_blank" rel="noreferrer" style={{ backgroundColor: '#facd05', color: '#000', padding: '12px 30px', borderRadius: '50px', fontWeight: '900', textDecoration: 'none' }}>KAGGLE</a>
+                <a href={p.hf} target="_blank" rel="noreferrer" style={{ color: '#fff', padding: '12px 30px', borderRadius: '50px', fontWeight: '900', textDecoration: 'none', border: '2px solid #facd05' }}>SPACES</a>
               </div>
             </div>
-            <div style={{ flex: '1', minWidth: '350px', height: 'auto' }}>
-              <img src={p.image} alt={p.title} style={{ width: '100%', height: '100%', objectFit: 'cover', minHeight: '400px' }} />
+            <div style={{ flex: '1', minWidth: '320px' }}>
+              <img src={p.image} alt={p.title} style={{ width: '100%', height: '100%', objectFit: 'cover', minHeight: '300px' }} />
             </div>
           </div>
         ))}
       </main>
 
-      {/* Müzik Butonu - Tüm Özellikler Korundu */}
-      <button
-        onClick={toggleMusic}
-        style={{
-          position: 'fixed', bottom: '30px', right: '30px', zIndex: 9999,
-          backgroundColor: isPlaying ? '#facd05' : 'rgba(20, 20, 20, 0.9)',
-          color: isPlaying ? '#000' : '#facd05',
-          border: '2px solid #facd05', borderRadius: '50px', padding: '15px 30px',
-          fontWeight: 'bold', cursor: 'pointer', boxShadow: '0 0 20px rgba(0,0,0,0.5)'
-        }}
-      >
-        {isPlaying ? "🔈 MUTE" : "🔊 PLAY"}
-      </button>
+      {/* --- MÜZİK BUTONU --- */}
+      <button onClick={toggleMusic} style={{
+        position: 'fixed', bottom: '20px', right: '20px', zIndex: 9999,
+        backgroundColor: isPlaying ? '#facd05' : '#000', color: isPlaying ? '#000' : '#facd05',
+        border: '2px solid #facd05', borderRadius: '50px', padding: '12px 20px', fontWeight: 'bold', cursor: 'pointer'
+      }}>{isPlaying ? "🔈 MUTE" : "🔊 PLAY"}</button>
 
-      {/* Footer - Tüm Metinler ve Disclaimer Korundu */}
-      <footer style={{ textAlign: 'center', padding: '100px 20px', background: 'rgba(0,0,0,0.85)' }}>
-        <p style={{ color: '#facd05', fontSize: '1.4rem', fontWeight: '800', marginBottom: '15px' }}>
+      {/* --- FOOTER --- */}
+      <footer style={{ textAlign: 'center', padding: '80px 20px', background: 'rgba(0,0,0,0.9)', borderTop: '2px solid #facd05' }}>
+        <p style={{ color: '#facd05', fontSize: '1.2rem', fontWeight: '800' }}>
           © 2026 Esma Tuğba MERGEN — Data Science & Machine Learning Portfolio
         </p>
-        <div style={{ maxWidth: '800px', margin: '0 auto' }}>
-          <p style={{ color: '#777', fontSize: '0.9rem', fontStyle: 'italic', lineHeight: '1.5' }}>
-            Disclaimer: This project is a non-commercial, educational portfolio.
-            All Batman-related imagery, music, and characters are the property of
-            DC Comics and Warner Bros. No copyright infringement is intended.
-          </p>
-        </div>
+        <p style={{ color: '#777', fontSize: '0.8rem', marginTop: '10px', maxWidth: '600px', margin: '10px auto', fontStyle: 'italic' }}>
+          Disclaimer: This project is a non-commercial, educational portfolio. All Batman-related imagery, music, and characters are property of DC Comics and Warner Bros.
+        </p>
       </footer>
 
       <style>{`
-        @keyframes pulse {
-          0% { transform: scale(1); }
-          50% { transform: scale(1.05); }
-          100% { transform: scale(1); }
-        }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
       `}</style>
     </div>
   );
